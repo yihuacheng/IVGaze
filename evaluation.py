@@ -4,7 +4,7 @@ import os
 folder = sys.argv[1]
 begin = 10
 step = 10
-end = 160
+end = 80
 
 # pre_add = 'log_zone'
 pre_add = 'log_dir'
