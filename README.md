@@ -1,38 +1,85 @@
 ![](./assets/logo.png)
-<h1> What Do You See in Vehicle? Comprehensive Vision Solution for In-Vehicle Gaze Estimation  <a href='https://arxiv.org/abs/2403.15664'><img src='https://img.shields.io/badge/ArXiv-PDF-red' style="vertical-align:middle;"></a>  </h1>
+<h1> What Do You See in Vehicle? Comprehensive Vision Solution for In-Vehicle Gaze Estimation </h1> 
 
-<i><a href="https://yihua.zone/">Yihua Cheng </a> and <a href='https://scholar.google.com.hk/citations?user=9ggbm0QAAAAJ&hl=en'>Feng Lu</a>,  ICCV 2023</i>
-   
-</div>
-<br>
+<i><a href="https://yihua.zone/">Yihua Cheng </a>, Yaning Zhu, Zongji Wang, Hongquan Hao, Yongwei Liu, Shiqing Cheng, Xi Wang, <a href="https://hyungjinchang.wordpress.com"> Hyung Jin Chang</a>,  CVPR 2024</i>
 
-<img src="images/teaser.png" width = "400" height = "200" alt="图片名称" align=center />
-</div>
+<a href='https://arxiv.org/abs/2403.15664'> <img src='https://img.shields.io/badge/ArXiv-PDF-red' style="vertical-align:middle;"> </a>  <a href='https://yihua.zone/work/ivgaze/'> <img src='https://img.shields.io/badge/Demo-Project%20Page-red' style="vertical-align:middle;"> </a>
+<a href='https://www.birmingham.ac.uk/'> <img src='https://img.shields.io/badge/UK-Unversity%20of%20Birmingham-red' style="vertical-align:middle;"> </a> 
+ 
 
 ## Description
-Dual cameras have been applied in many devices recently. In this paper, we explore a new direction for gaze estimation. We propose a dual-view gaze estimation network (DV-Gaze) including dual-view interactive convolution block and dual-view transformers.
-![DVGaze](images/pipeline.png)
+This is the offical code for the paper, entilted *What Do You See in Vehicle? Comprehensive Vision Solution for In-Vehicle Gaze Estimation*, CVPR24.
+In this paper, we collect 
 
-## Usage
-Please re-write the config file in `config/train/xxx.yaml` and `config/test/xxx.yaml`.
+## Requirement
 
-To train a model, Please run the command:
-```
-python trainer/total.py config/train/xxx.yaml
-```
+1. Install Pytorch and torchvision. This code is written in `Python 3.8` and utilizes `PyTorch 1.13.1` with `CUDA 11.6` on Nvidia GeForce RTX 3090. While this environment is recommended, it is not mandatory. Feel free to run the code on your preferred environment.
 
-To evaluate a model, please run the command:
 ```
-python tester/total.py config/train/xxx.yaml config/test/xxx.yaml
+pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
-where `config/train/xxx.yaml` indicates the config for training model.
+2. Install other packages.
+```
+pip install opencv-python PyYAML easydict warmup_scheduler
+```
+
+If you have any issues due to missing packages, please report them. I will update the requirements. Thank you for your cooperation.
+
+## Training
+
+**Step 1: Choose the model file.** 
+
+We provide three models `GazePTR.py`, `GazeDPTR.py` and `GazeDPTR_v2.py`. (We will update pretrained weights ASAP.)
+
+| | Name | Description | Input | Output|Accuracy|Pretrained Weights|
+|:----|:----|:----|:----:|:----:|:----:|:----:|
+|1|GazePTR| This method leverages multi-level feature.|Normalized Images|Gaze Directions|7.04°|Link|
+|2|GazeDPTR| This method integrates feature from two images.|Normalized Images  Original Images|Gaze Directions|7.04°|Link|
+|3|GazeDPTR_V2| This method contains a diffierential projection for gaze zone prediction. |Normalized Images  Original Images|Gaze Directions Gaze Zone|6.71° 81.8%|Link|
+
+Please choose one model and rename it as `model.py`, *e.g.*,
+```
+cp GazeDPTR.py model.py
+```
+
+**Step 2: Modify the config file**
 
 
-Please download the label file from <a href='https://drive.google.com/drive/folders/16yt3xjkQzR_hA5EMFWQhrL-s2f3A3MKb?usp=sharing'> Google Driver </a>. We are not authorized to distribute image files. Please access <a href='https://phi-ai.buaa.edu.cn/Gazehub/'> Gazehub </a> to acquire data-processing code on ETH and EVE. Note that the website only works on working time (8:00-19:00?) in the China time zone (I have graduated and don't know the reason). Apologise for the inconvenience. I will try my best to update data-processing codes in Github.
+Please modify `config/train/config_iv.yaml` according to your environment settings.
 
-**All codes are beta version and we will keep updating this repositories. The full version will be updated before Oct. 10.**
+- The `Save` attribute specifies the save path, where the model will be stored at`os.path.join({save.metapath}, {save.folder})`. Each saved model will be named as `Iter_{epoch}_{save.model_name}.pt`
+- The `data` attribute indicates the dataset path. Update the `image` and `label` to match your dataset location.
 
+**Step 3: Training models**
+
+Run the following command to initiate training. The argument `3` indicates that it will automatically perform three-fold cross-validation:
+
+```
+python trainer/leave.py config/train/config_iv.yaml 3
+```
+
+Once the training is complete, you will find the weights saved at `os.path.join({save.metapath}, {save.folder})`. 
+Within the `checkpoint` directory, you will find three folders named `train1.txt`, `train2.txt`, and `train3.txt`, corresponding to the three-fold cross-validation. Each folder contains the respective trained model."
+
+## Testing
+Run the following command for testing.
+```
+python tester/leave.py config/train/config_iv.yaml config/test/config_iv.yaml 3
+```
+Similarly, 
+- Update the `image` and `label` in `config/test/config_iv.yaml` based on your dataset location.
+- The `savename` attribute specifies the folder to save prediction results, which will be stored at `os.path.join({save.metapath}, {save.folder})` as defined in `config/train/config_iv.yaml`.
+- The code `tester/leave.py` provides the gaze zone prediction results. Remove it if you do not require gaze zone prediction.
+
+## Evaluation
+
+We provide `evaluation.py` script to assess the accuracy of gaze direction estimation. Run the following command:
+```
+python evaluation.py {PATH}
+```
+Replace `{PATH}` with the path of `{savename}` as configured in your settings.
+
+
+## Contact
 Please send email to `y.cheng.2@bham.ac.uk` if you have any questions. 
-
-*We can also meet in ICCV conference in person:) Have a good day.*
