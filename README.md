@@ -8,8 +8,13 @@
  
 
 ## Description
-This is the offical code for the paper, entilted *What Do You See in Vehicle? Comprehensive Vision Solution for In-Vehicle Gaze Estimation*, CVPR24.
-In this paper, we collect 
+This repository provides offical code of the paper titled *What Do You See in Vehicle? Comprehensive Vision Solution for In-Vehicle Gaze Estimation*, accepted at CVPR24.
+Our contribution includes:
+- We provide a dataset **IVGaze** collected on vehicles containing 44k images of 125 subjects.
+- We propose a gaze pyramid transformer (GazePTR) that leverages transformer-based multilevel features integration.
+- We introduce the dual-stream gaze pyramid transformer (GazeDPTR). Employing perspective transformation, we rotate virtual cameras to normalize images, utilizing camera pose to merge normalized and original images for accurate gaze estimation. 
+
+Please visit our <a href='https://yihua.zone/work/ivgaze/'>project page </a> for details.
 
 ## Requirement
 
