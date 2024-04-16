@@ -1,0 +1,43 @@
+---
+train:
+
+    params:
+        batch_size: 64
+        epoch: 80
+        lr: 0.001
+        decay: 0.5
+        decay_step: 60
+        warmup: 5
+
+    save:
+        metapath: "/home/$YourSavePath$/exp/GazeDPTR"
+        folder: iv
+        model_name: trans6
+        step: 10
+
+    data:
+        origin:
+            image: "/home/$YourPath$/Origin"
+            label: "/home/$YourPath$/Origin/label_class"
+            header: True
+            name: ivorigin
+            isFolder: True
+        norm:
+            image: "/home/$YourPath$/Norm"
+            label: "/home/$YourPath$/Norm/label_class"
+            header: True
+            name: ivnorm
+            isFolder: True
+    
+            
+    pretrain:
+        enable: False
+        path: None
+        device: 0
+
+    device: 0
+
+    reader: reader
+
+# dropout = 0
+# dim_feed = 512
