@@ -40,7 +40,7 @@ We provide three models `GazePTR.py`, `GazeDPTR.py` and `GazeDPTR_v2.py`. (We wi
 | | Name | Description | Input | Output|Accuracy|Pretrained Weights|
 |:----|:----|:----|:----:|:----:|:----:|:----:|
 |1|GazePTR| This method leverages multi-level feature.|Normalized Images|Gaze Directions|7.04°|Link|
-|2|GazeDPTR| This method integrates feature from two images.|Normalized Images  Original Images|Gaze Directions|7.04°|Link|
+|2|GazeDPTR| This method integrates feature from two images.|Normalized Images  Original Images|Gaze Directions|6.71°|Link|
 |3|GazeDPTR_V2| This method contains a diffierential projection for gaze zone prediction. |Normalized Images  Original Images|Gaze Directions Gaze Zone|6.71° 81.8%|Link|
 
 Please choose one model and rename it as `model.py`, *e.g.*,
