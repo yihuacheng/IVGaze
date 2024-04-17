@@ -14,7 +14,7 @@ Our contribution includes:
 - We propose a gaze pyramid transformer (GazePTR) that leverages transformer-based multilevel features integration.
 - We introduce the dual-stream gaze pyramid transformer (GazeDPTR). Employing perspective transformation, we rotate virtual cameras to normalize images, utilizing camera pose to merge normalized and original images for accurate gaze estimation. 
 
-Please visit our <a href='https://yihua.zone/work/ivgaze/'>project page </a> for details.
+Please visit our <a href='https://yihua.zone/work/ivgaze/'>project page </a> for details. Dataset is acquired on <a href='https://github.com/yihuacheng/IVGaze/blob/main/DATASET.md'> this page </a>.
 
 ## Requirement
 
