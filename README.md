@@ -85,6 +85,7 @@ python evaluation.py {PATH}
 ```
 Replace `{PATH}` with the path of `{savename}` as configured in your settings.
 
+Please find the visualization code in the issues.
 
 ## Contact
 Please send email to `y.cheng.2@bham.ac.uk` if you have any questions. 
