@@ -16,7 +16,7 @@ Our contribution includes:
 
 Please visit our <a href='https://yihua.zone/work/ivgaze/'>project page </a> for details. The dataset is available on <a href='https://github.com/yihuacheng/IVGaze/blob/main/DATASET.md'> this page </a>.
 
- [<div align=center>![Gaze](https://res.cloudinary.com/marcomontalbano/image/upload/v1720447174/video_to_markdown/images/youtube--050M4CK5EwI-c05b58ac6eb4c4700831b2b3070cd403.jpg)</div> ](https://www.youtube.com/watch?v=050M4CK5EwI&t=3s "Gaze") 
+ [![Gaze](https://res.cloudinary.com/marcomontalbano/image/upload/v1720447174/video_to_markdown/images/youtube--050M4CK5EwI-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=050M4CK5EwI&t=3s "Gaze") 
 
 ## Requirement
 
