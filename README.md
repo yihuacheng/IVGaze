@@ -35,13 +35,13 @@ If you have any issues due to missing packages, please report them. I will updat
 
 **Step 1: Choose the model file.** 
 
-We provide three models `GazePTR.py`, `GazeDPTR.py` and `GazeDPTR_v2.py`. (We will update pretrained weights ASAP.)
+We provide three models `GazePTR.py`, `GazeDPTR.py` and `GazeDPTR_v2.py`. The links of pre-trained weights are the same. Please load corresponding weights based on your requirement.
 
 | | Name | Description | Input | Output|Accuracy|Pretrained Weights|
 |:----|:----|:----|:----:|:----:|:----:|:----:|
-|1|GazePTR| This method leverages multi-level feature.|Normalized Images|Gaze Directions|7.04°|Link|
-|2|GazeDPTR| This method integrates feature from two images.|Normalized Images  Original Images|Gaze Directions|6.71°|Link|
-|3|GazeDPTR_V2| This method contains a diffierential projection for gaze zone prediction. |Normalized Images  Original Images|Gaze Directions Gaze Zone|6.71° 81.8%|Link|
+|1|GazePTR| This method leverages multi-level feature.|Normalized Images|Gaze Directions|7.04°|<a href='https://drive.google.com/file/d/1uc5OkwZJO-KfMSuFAW0Hl-JSwTrfPURq/view?usp=drive_link'> Link </a>|
+|2|GazeDPTR| This method integrates feature from two images.|Normalized Images  Original Images|Gaze Directions|6.71°|<a href='https://drive.google.com/file/d/1uc5OkwZJO-KfMSuFAW0Hl-JSwTrfPURq/view?usp=drive_link'> Link </a>|
+|3|GazeDPTR_V2| This method contains a diffierential projection for gaze zone prediction. |Normalized Images  Original Images|Gaze Directions Gaze Zone|6.71° 81.8%|<a href='https://drive.google.com/file/d/1uc5OkwZJO-KfMSuFAW0Hl-JSwTrfPURq/view?usp=drive_link'> Link </a>|
 
 Please choose one model and rename it as `model.py`, *e.g.*,
 ```
