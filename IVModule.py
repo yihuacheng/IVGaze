@@ -165,8 +165,9 @@ class conv1x1(nn.Module):
         output = self.conv(feature)
         output = self.bn(output)
         output = self.avgpool(output)
-        output = output.squeeze()
- 
+        # output = output.squeeze()
+        bs, c, h, w = output.shape
+        output = torch.reshape(output, (bs, c * h * w))
         return output
         
 
